@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "cd client && npm install && npm run build",
-    "postinstall": "ng build --aot --prod"
+    "heroku-postbuild": "cd client && npm install && npm run build"
+    
   },
   "private": true,
   "dependencies": {
