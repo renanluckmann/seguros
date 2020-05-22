@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@ang
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common'; 
 
 
 export interface Task {
@@ -17,7 +18,8 @@ export interface Task {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [DatePipe] 
 })
 export class AppComponent {
   title = 'Seguros';
@@ -25,7 +27,7 @@ export class AppComponent {
   checkoutForm;
   desejadas;
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar,private datePipe: DatePipe) {
     this.checkoutForm = new FormGroup({
       nomeCompleto: new FormControl('', [
         Validators.required,
@@ -155,7 +157,7 @@ export class AppComponent {
                    #COBERTURAS
                    `;
     email = email.replace("#NOME", form1.nomeCompleto)
-      .replace("#NASCIMENTO", form1.dtNascimento)
+      .replace("#NASCIMENTO", this.datePipe.transform(form1.dtNascimento, 'dd/MM/yyyy'))
       .replace("#SEXO", form1.sexo)
       .replace("#PROFISSAO", form1.profissao)
       .replace("#CIDADE", form1.cidade)
@@ -185,6 +187,7 @@ export class AppComponent {
       duration: 2000,
     });
     this.checkoutForm.reset();
+    this.checkoutForm.updateValueAndValidity()
     Object.keys(this.checkoutForm.controls).forEach(
       field => {
         this.checkoutForm.get(field).setErrors(null);
