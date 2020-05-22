@@ -7,8 +7,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "outputPath": "dist/seguro-app",
-    "heroku-postbuild": "ng build --prod"
+    "outputPath": "/seguro-app",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
