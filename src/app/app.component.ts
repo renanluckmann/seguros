@@ -4,6 +4,7 @@ import { ThemePalette } from '@angular/material/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 export interface Task {
@@ -24,7 +25,7 @@ export class AppComponent {
   checkoutForm;
   desejadas;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
     this.checkoutForm = new FormGroup({
       nomeCompleto: new FormControl('', [
         Validators.required,
@@ -127,12 +128,13 @@ export class AppComponent {
     this.task.subtasks.filter(t => t.completed).forEach(t => this.desejadas.push(t.name));
     form1.valores = form1.valores.filter(item => item != null && item != 0)
     for (let index = 0; index < this.desejadas.length; index++) {
-      this.desejadas[index] += " : " + form1.valores[index] + ` 
+      this.desejadas[index] += " : R$ " + form1.valores[index] + ` 
 
-                  `;
+                -`;
     }
-
-    let email = `  Nome:        #NOME
+    let email = `Cadastro Orçamento Seguro de Vida 
+    
+                   Nome:        #NOME
                    Nascimento:  #NASCIMENTO
                    Sexo:        #SEXO
                    Profissão:   #PROFISSAO
@@ -167,7 +169,8 @@ export class AppComponent {
       .replace("#ESPORTES", form1.esportesRadicais)
       .replace("#QUAIS", form1.quaisEsportes)
       .replace("#PARTICIPANTES", form1.participantes)
-      .replace("#COBERTURAS", this.desejadas);
+      .replace("#COBERTURAS", this.desejadas)
+      .replace("null", "");
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http.post('https://formspree.io/moqkjyvo',
@@ -177,5 +180,9 @@ export class AppComponent {
           console.log(response);
         }
       );
+      
+    this._snackBar.open("Enviado com sucesso! Obrigado," + form1.nomeCompleto + ".", "", {
+      duration: 2000,
+    });
   }
 }
