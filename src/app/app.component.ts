@@ -184,5 +184,11 @@ export class AppComponent {
     this._snackBar.open("Enviado com sucesso! Obrigado," + form1.nomeCompleto + ".", "", {
       duration: 2000,
     });
+    this.checkoutForm.reset();
+    Object.keys(this.checkoutForm.controls).forEach(
+      field => {
+        this.checkoutForm.get(field).setErrors(null);
+      }
+    );
   }
 }
