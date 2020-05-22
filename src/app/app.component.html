@@ -429,7 +429,7 @@
       </span>
     </section>
     <div style="padding-top: 20px;padding-bottom: 20px;">
-      <button mat-raised-button color="primary" disabled="!checkoutForm.valid" type="submit" style="display:block;margin:auto;font-size: 20px;width: 80%;">
+      <button mat-raised-button color="primary" [disabled]="checkoutForm.invalid" type="submit" style="display:block;margin:auto;font-size: 20px;width: 80%;">
         Enviar
       </button>
     </div>

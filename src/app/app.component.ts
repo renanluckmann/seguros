@@ -26,45 +26,45 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {
     this.checkoutForm = new FormGroup({
-      nomeCompleto: new FormControl("", [
+      nomeCompleto: new FormControl('', [
         Validators.required,
       ]),
-      dtNascimento: new FormControl("", [
+      dtNascimento: new FormControl('', [
         Validators.required,
       ]),
-      sexo: new FormControl("", [
+      sexo: new FormControl('', [
         Validators.required,
       ]),
-      profissao: new FormControl("", [
+      profissao: new FormControl('', [
         Validators.required,
       ]),
-      cidade: new FormControl("", [
+      cidade: new FormControl('', [
         Validators.required,
       ]),
-      bairro: new FormControl("", [
+      bairro: new FormControl('', [
         Validators.required,
       ]),
-      endereco: new FormControl("", [
+      endereco: new FormControl('', [
         Validators.required,
       ]),
-      CEP: new FormControl("", [
+      CEP: new FormControl('', [
         Validators.required,
       ]),
       telefone: new FormControl(),
-      celular: new FormControl("", [
+      celular: new FormControl('', [
         Validators.required,
       ]),
-      email: new FormControl("", [
+      email: new FormControl('', [
         Validators.required,
       ]),
-      fumante: new FormControl("", [
+      fumante: new FormControl('', [
         Validators.required,
       ]),
-      esportesRadicais: new FormControl("", [
+      esportesRadicais: new FormControl('', [
         Validators.required,
       ]),
       quaisEsportes: new FormControl(),
-      participantes: new FormControl("", [
+      participantes: new FormControl('', [
         Validators.required,
       ]),
       valores: new FormArray([
@@ -123,8 +123,6 @@ export class AppComponent {
   }
 
   onSubmit(form1) {
-    // console.log(form1);
-
     this.desejadas = [];
     this.task.subtasks.filter(t => t.completed).forEach(t => this.desejadas.push(t.name));
     form1.valores = form1.valores.filter(item => item != null && item != 0)
