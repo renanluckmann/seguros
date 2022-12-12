@@ -23,7 +23,7 @@
     "@angular/router": "~9.1.7",
     "angular2-text-mask": "^9.0.0",
     "bootstrap": "^4.5.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "js-brasil": "^2.1.0",
     "ng-brazil": "^2.0.10",
     "ng2-currency-mask": "^9.0.2",
